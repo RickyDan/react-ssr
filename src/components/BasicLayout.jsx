@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import ajax from '../utils/http'
 import {
   Layout,
   Menu,
@@ -12,6 +13,11 @@ const {
 
 
 export default function BasicLayout () {
+
+  useEffect (() => {
+    const data = ajax.request('userList', 'get', { username: 'Rondo' })
+    console.log(data)
+  })
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
