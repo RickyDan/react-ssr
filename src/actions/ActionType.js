@@ -1,0 +1,6 @@
+export const PLUS = 'PLUS'
+export const REDUCE = 'REDUCE'
+export const MULTIPLY = 'MULTIPLY'
+export const DIVIDE = 'DIVIDE'
+export const CHANGENUM = 'CHANGENUM'
+export const SELECTTYPE = 'SELECTTYPE'

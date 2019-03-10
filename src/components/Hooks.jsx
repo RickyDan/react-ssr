@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Button } from 'antd'
 import '../assets/styles/hooks.less'
 
-function Example () {
-  const [count, setCount] = useState(0)
-  useEffect (() => {
-    console.log('after update count' + count)
-  })
-  console.log('count' + count)
+const Hooks = ({ total, types, operate }) => {
   return (
-    <div>
-      <p className="hooks">You clicked {count} times</p>
-      <Button onClick={() => setCount(count + 1)}>
-        Click me
+    <span>
+      <Button onClick={() => operate(types.toUpperCase())} type="primary">
+        Btn
       </Button>
-    </div>
+      <h1>{total}</h1>
+    </span>
   )
 }
-export default Example
+
+Hooks.propTypes = {
+  total: PropTypes.number,
+  add: PropTypes.func,
+  types: PropTypes.string
+}
+export default Hooks

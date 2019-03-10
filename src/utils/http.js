@@ -4,7 +4,7 @@ import cookie from './cookie'
 class Ajax {
   constructor () {
     this.$http = axios
-    this.baseUrl = 'http://localhost:8000/'
+    this.baseUrl = 'http://localhost:8000'
     this.$http.interceptors.request.use(
       config => {
         let token = cookie.getCookie('csrf_token')

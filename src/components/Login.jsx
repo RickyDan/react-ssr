@@ -3,6 +3,9 @@ import {
   Form, Icon, Input, Button
 } from 'antd'
 import http from '../utils/http'
+import history from '../utils/history'
+import showTips from '../utils/showTips'
+import cookie from '../utils/cookie'
 import '../assets/styles/login.less'
 
 function NormalLoginForm () {
@@ -10,11 +13,17 @@ function NormalLoginForm () {
   const [password, setPassword] = useState('')
 
   async function getLogin () {
-    const data = await http.request('login', 'post', {
+    const data = await http.request('/login', 'post', {
       username,
       password
     })
-    console.log(data)
+    if (data.code === 200) {
+      showTips.success(data.message)
+      cookie.setCookie('csrf_token', data.token)
+      history.push('/')
+    } else {
+      showTips.error(data.message)
+    }
   }
   return (
     <Form className="login-form">
