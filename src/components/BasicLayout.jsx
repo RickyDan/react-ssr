@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import http from '../utils/http'
+import React from 'react'
 import {
   Layout,
   Menu,
   Icon
 } from 'antd'
+import UserList from '../containers/UserList'
 
 const {
   Sider,
@@ -13,10 +13,6 @@ const {
 } = Layout
 
 export default function BasicLayout () {
-  const [userList, setUserList] = useState([])
-  useEffect (() => {
-    const data = http.request('/', 'get', { username: 'Rondo' })
-  })
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
@@ -37,7 +33,7 @@ export default function BasicLayout () {
       <Layout>
         <Header style = {{ background: '#fff', padding: 0 }} />
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-          内容
+          <UserList />
         </Content>
       </Layout>
     </Layout>

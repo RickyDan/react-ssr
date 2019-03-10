@@ -41,7 +41,7 @@ class Ajax {
     )
   }
 
-  request (url, method, params) {
+  request (url, method = 'get', params = {}) {
     url = this.baseUrl + url
     return this.$http({
       method: method,

@@ -1,13 +1,19 @@
 import React from 'react'
 import { render} from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
 import rootState from './reducers'
+import rootSaga from './sagas'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import './assets/styles/index.less'
 
-const store = createStore(rootState)
+const sagaMiddleware = createSagaMiddleware()
+const middlewares = [sagaMiddleware, logger]
+const store = createStore(rootState, applyMiddleware(...middlewares))
+sagaMiddleware.run(rootSaga)
 render(
   <Provider store={store}>
     <App />

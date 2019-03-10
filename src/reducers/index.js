@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
-import operate from './caculate'
-import selectType from './select'
+import user from './user'
 
 export default combineReducers({
-  operate,
-  selectType
+  user
 })
