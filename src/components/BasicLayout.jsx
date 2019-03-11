@@ -31,7 +31,7 @@ export default function BasicLayout () {
         </div>
       </Sider>
       <Layout>
-        <Header style = {{ background: '#fff', padding: 0 }} />
+        <Header style = {{ background: '#000', padding: 0 }} />
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
           <UserList />
         </Content>

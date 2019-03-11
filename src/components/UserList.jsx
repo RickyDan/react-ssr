@@ -17,6 +17,10 @@ const columns = [{
   title: '创建时间',
   dataIndex: 'createdAt',
   key: 'createdAt'
+}, {
+  title: '更新时间',
+  dataIndex: 'updatedAt',
+  key: 'updatedAt'
 }]
 const UserList = ({ users, fetchUser }) => {
   useEffect(() => {
