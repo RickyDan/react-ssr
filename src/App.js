@@ -1,5 +1,5 @@
 import React from 'react'
-import App from './router'
+import App from './routes'
 
 const Container = () => {
   return <App />
