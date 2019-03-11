@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
+import AuthRoute from './routes/privateRoute'
 import history from './utils/history'
 import BasicLayout from './components/BasicLayout'
 import Login from './containers/Login'
@@ -9,7 +10,7 @@ export default function router () {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={BasicLayout} />
+        <AuthRoute path="/" exact component={BasicLayout} />
         <Route path="/login" component={Login} />
         <Route component={NoMatch} />
       </Switch>
