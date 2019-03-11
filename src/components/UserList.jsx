@@ -1,7 +1,11 @@
-import React from 'react'
-import { Button, Table } from 'antd'
+import React, { useEffect } from 'react'
+import { Table } from 'antd'
 
 const columns = [{
+  title: 'id',
+  dataIndex: 'id',
+  key: 'id'
+}, {
   title: '用户名',
   dataIndex: 'username',
   key: 'username'
@@ -10,14 +14,18 @@ const columns = [{
   dataIndex: 'nickname',
   key: 'nickname'
 }, {
-  title: '权限',
-  dataIndex: 'auth',
-  key: 'auth'
+  title: '创建时间',
+  dataIndex: 'createdAt',
+  key: 'createdAt'
 }]
-const UserList = ({ users, fetchUser }) => (
-  <div>
-    <Table dataSource={users} columns={columns} />
-    <Button onClick={fetchUser}>Click me</Button>
-  </div>
-)
+const UserList = ({ users, fetchUser }) => {
+  useEffect(() => {
+    fetchUser()
+  }, [])
+  return (
+    <div>
+      <Table dataSource={users} columns={columns} rowKey="id" bordered />
+    </div>
+  )  
+}
 export default UserList
