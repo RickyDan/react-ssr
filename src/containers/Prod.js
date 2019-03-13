@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import Prod from '../components/Prod'
-import { GET_USER_SAGA } from '../actions/ActionType'
+import { GET_PRODS_SAGA } from '../actions/ActionType'
 
 const mapStateToProps = (state) => ({
-  users: state.user.users
+  prods: state.prod.prods
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (users) => dispatch({ type: GET_USER_SAGA, users })
+  fetchProd: (prods) => dispatch({ type: GET_PRODS_SAGA, prods })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Prod)

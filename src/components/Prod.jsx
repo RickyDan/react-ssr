@@ -6,26 +6,34 @@ const columns = [{
   dataIndex: 'id',
   key: 'id'
 }, {
-  title: '用户名',
-  dataIndex: 'username',
-  key: 'username'
+  title: '商品名',
+  dataIndex: 'prodname',
+  key: 'prodname'
 }, {
-  title: '昵称',
-  dataIndex: 'nickname',
-  key: 'nickname'
+  title: '价格',
+  dataIndex: 'price',
+  key: 'price'
+}, {
+  title: '库存',
+  dataIndex: 'count',
+  key: 'count'
+}, {
+  title: '示例图片',
+  dataIndex: 'prodImg',
+  key: 'prodImg'
 }, {
   title: '创建时间',
   dataIndex: 'createdAt',
   key: 'createdAt'
 }]
-const UserList = ({ users, fetchUser }) => {
+const Prod = ({ prods, fetchProd }) => {
   useEffect(() => {
-    fetchUser()
+    fetchProd()
   }, [])
   return (
     <div>
-      <Table dataSource={users} columns={columns} rowKey="id" bordered />
+      <Table dataSource={prods} columns={columns} rowKey="id" bordered />
     </div>
   )
 }
-export default UserList
+export default Prod
