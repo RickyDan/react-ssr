@@ -1,10 +1,11 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Redirect } from 'react-router-dom'
 import {
   Layout,
   Menu,
   Icon
 } from 'antd'
+import getAuth from '../utils/auth'
 
 
 const {
@@ -43,11 +44,11 @@ const BasicLayout = ({children, ...rest}) => {
 
 const DashboardRoute = ({component: Component, ...rest}) => {
   return (
-    <Route {...rest} render={matchProps => (
+    getAuth() ? (<Route {...rest} render={matchProps => (
       <BasicLayout>
         <Component {...matchProps} />  
       </BasicLayout>  
-    )} />
+    )} />) : (<Redirect to="/login" />)
   )
 }
 export default DashboardRoute
