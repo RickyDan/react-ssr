@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import React from 'react'
+import { Route, Link } from 'react-router-dom'
 import {
   Layout,
   Menu,
@@ -19,14 +19,14 @@ const BasicLayout = ({children, ...rest}) => {
        <Sider
         collapsed={true}>
          <div className="logo">
-           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+           <Menu theme="dark" mode="inline">
              <Menu.Item key="1">
                <Icon type="pie-chart" />
-               <span>用户管理</span>
+               <Link to="/users">用户管理</Link>
              </Menu.Item>
              <Menu.Item key="2">
                <Icon type="desktop" />
-               <span>商品管理</span>
+               <Link to="/prods">商品管理</Link>
              </Menu.Item>
            </Menu>
          </div>
