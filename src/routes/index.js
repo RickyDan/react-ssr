@@ -1,8 +1,8 @@
 import React from 'react'
-import { Router, Route, Switch } from 'react-router-dom'
-import AuthRoute from './privateRoute'
+import { Router, Route, Switch, Redirect, Match } from 'react-router-dom'
 import history from '../utils/history'
-import BasicLayout from '../components/BasicLayout'
+import DashboardRoute from '../components/BasicLayout'
+import UserList from '../containers/UserList'
 import Login from '../containers/Login'
 import NoMatch from '../components/NoMatch'
 
@@ -10,8 +10,11 @@ export default function router () {
   return (
     <Router history={history}>
       <Switch>
-        <AuthRoute path="/" exact component={BasicLayout} />
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
         <Route path="/login" component={Login} />
+        <DashboardRoute path="/users" component={UserList} />
         <Route component={NoMatch} />
       </Switch>
     </Router>
