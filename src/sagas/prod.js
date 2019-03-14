@@ -3,7 +3,10 @@ import http from '../utils/http'
 import {
   GET_PRODS_SUCCESS,
   GET_PRODS_FAIL,
-  GET_PRODS_SAGA
+  GET_PRODS_SAGA,
+  ADD_PROD_SUCCESS,
+  ADD_PROD_FAIL,
+  ADD_PROD_SAGA
 } from '../actions/ActionType'
 
 function *getProds(param) {
@@ -15,6 +18,19 @@ function *getProds(param) {
   }
 }
 
+function *addProd (param) {
+  try {
+    const response = yield http.request('/prod/add', 'post', param)
+    yield put({ type: ADD_PROD_SUCCESS, info: response })
+  } catch (e) {
+    yield put({ type: ADD_PROD_FAIL })
+  }
+}
+
 export function *watchGetProds() {
   yield takeLatest(GET_PRODS_SAGA, getProds)
+}
+
+export function *watchAddProd() {
+  yield takeLatest(ADD_PROD_SAGA, addProd)
 }
