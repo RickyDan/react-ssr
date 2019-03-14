@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal, Input } from 'antd'
+import { Table, Button, Modal, Input, Upload, message, Icon } from 'antd'
 
 const columns = [{
   title: 'id',
@@ -27,7 +27,8 @@ const columns = [{
   dataIndex: 'createdAt',
   key: 'createdAt'
 }]
-const Prod = ({ prods, fetchProd, addProd }) => {
+const Prod = (props) => {
+  const { prods, fetchProd, addProd } = props
   const [visible, setVisible] = useState(false)
   const [prodname, setProdName] = useState('')
   const [price, setPrice] = useState(0)
@@ -39,6 +40,13 @@ const Prod = ({ prods, fetchProd, addProd }) => {
   function createProd () {
     addProd({prodname, price, count, prodImg})
     setVisible(false)
+  }
+
+  function uploadChange (info) {
+    if (info.file.status === 'done') {
+      setProdImg(info.file.response.filename)
+      message.success(`${info.file.name}`)
+    }
   }
   return (
     <div>
@@ -65,11 +73,12 @@ const Prod = ({ prods, fetchProd, addProd }) => {
             value={count}
             placeholder="请输入库存"
             allowClear /></span>
-          <span>商品图片: <Input
-            onChange={(e) => setProdImg(e.target.value)}
-            value={prodImg}
-            placeholder="请上传图片"
-            allowClear /></span>
+          <span>商品图片: </span>
+            <Upload name="file" action="http://localhost:8000/upload/" onChange={uploadChange}>
+              <Button>
+                <Icon type="upload" /> Click to Upload
+              </Button>
+            </Upload>
         </div>
       </Modal>
       <Table dataSource={prods} columns={columns} rowKey="id" bordered />
