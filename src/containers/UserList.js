@@ -3,7 +3,7 @@ import UserList from '../components/UserList'
 import { GET_USER_SAGA } from '../actions/ActionType'
 
 const mapStateToProps = (state) => ({
-  users: state.user.users
+  dataSource: state.user.dataSource
 })
 
 const mapDispatchToProps = (dispatch) => ({

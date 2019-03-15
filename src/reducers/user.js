@@ -5,14 +5,14 @@ import {
 
 const initState = {
   isFetching: false,
-  users: [],
+  dataSource: [],
   error: null
 }
 
 const prodsReducer = (state = initState, action) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
-      return {...state, isFetching: true, users: action.user}
+      return {...state, isFetching: true, dataSource: action.user}
     case GET_USER_FAIL:
       return {...state, error: action.error}
     default:

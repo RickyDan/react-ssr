@@ -22,13 +22,13 @@ const columns = [{
   dataIndex: 'updatedAt',
   key: 'updatedAt'
 }]
-const UserList = ({ users, fetchUser }) => {
+const UserList = ({ dataSource, fetchUser }) => {
   useEffect(() => {
     fetchUser()
   }, [])
   return (
     <div>
-      <Table dataSource={users} columns={columns} rowKey="id" bordered />
+      <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
     </div>
   )  
 }
