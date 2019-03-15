@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Table } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Table, Button } from 'antd'
 
 const columns = [{
   title: 'id',
@@ -23,11 +23,16 @@ const columns = [{
   key: 'updatedAt'
 }]
 const UserList = ({ dataSource, fetchUser }) => {
+  const [visible, setVisible] = useState(false)
   useEffect(() => {
     fetchUser()
   }, [])
+  function showVisible () {
+    setVisible(true)
+  }
   return (
     <div>
+      <Button onClick={showVisible}>{visible ? 'true' : 'false'}</Button>
       <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
     </div>
   )  

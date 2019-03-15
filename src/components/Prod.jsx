@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal, Input, Upload, message, Icon } from 'antd'
+import { Table, Button, Modal, Input, Upload, message, Icon, Select } from 'antd'
+import '../assets/styles/prod.less'
 
+const Option = Select.Option
 const columns = [{
   title: 'id',
   dataIndex: 'id',
@@ -21,7 +23,15 @@ const columns = [{
   title: '商品图片',
   dataIndex: 'prodImg',
   key: 'prodImg',
-  render: (img) => <img src={img} width="30" alt="" />
+  render: (img) => <span className="prod-img"><img src={img} alt="" /></span>
+}, {
+  title: '类别',
+  dataIndex: 'category',
+  key: 'category'
+}, {
+  title: '厂家',
+  dataIndex: 'supplier',
+  key: 'supplier'
 }, {
   title: '创建时间',
   dataIndex: 'createdAt',
@@ -29,50 +39,76 @@ const columns = [{
 }]
 const Prod = (props) => {
   const { prods, fetchProd, addProd } = props
-  const [visible, setVisible] = useState(false)
-  const [prodname, setProdName] = useState('')
-  const [price, setPrice] = useState(0)
-  const [count, setCount] = useState(0)
-  const [prodImg, setProdImg] = useState('')
+  const [params, setParams] = useState({
+    visible: false,
+    current: 1,
+    pageSize: 1,
+    prodname: '',
+    price: 0,
+    count: 0,
+    prodImg: '',
+    supplier: '',
+    category: ''
+  })
   useEffect(() => {
-    fetchProd()
+    fetchProd(params)
   }, [])
   function createProd () {
-    addProd({prodname, price, count, prodImg})
-    setVisible(false)
+    addProd(params)
+    setParams({...params, visible: false})
   }
 
   function uploadChange (info) {
     if (info.file.status === 'done') {
-      setProdImg(info.file.response.filename)
+      setParams({...params, prodImg: info.file.response.filename})
       message.success(`${info.file.name}`)
     }
   }
+
+  function pageChange (current) {
+    setParams({...params, current})
+    fetchProd(params)
+  }
+
   return (
     <div>
-      <Button icon="plus" onClick={() => setVisible(true)}>新增</Button>
+      <Button icon="plus" onClick={() => setParams({...params, visible: true})}>新增</Button>
       <Modal
         title="商品上架"
-        visible={visible}
+        visible={params.visible}
         onOk={createProd}
-        onCancel={() => setVisible(false)}
+        onCancel={() => setParams({...params, visible: false})}
       >
         <div>
           <span>商品名: <Input
-            onChange={(e) => setProdName(e.target.value)}
-            value={prodname}
+            onChange={(e) => setParams({...params, prodname: e.target.value})}
+            value={params.prodname}
             placeholder="请输入商品名" allowClear />
           </span>
           <span>价格: <Input
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
+            onChange={(e) => setParams({...params, price: e.target.value})}
+            value={params.price}
             placeholder="请输入价格"
             allowClear /></span>
           <span>库存: <Input
-            onChange={(e) => setCount(e.target.value)}
-            value={count}
+            onChange={(e) => setParams({...params, count: e.target.value})}
+            value={params.count}
             placeholder="请输入库存"
             allowClear /></span>
+          <span>厂商: 
+            <Select onChange={(value) => setParams({...params, supplier: value})} style={{ width: 120 }}>
+              <Option value="HuaWei">华为</Option>
+              <Option value="Xiaomi">小米</Option>
+              <Option value="iPhone">苹果</Option>
+            </Select>
+          </span>
+          <span>类别:
+            <Select onChange={(value) => setParams({...params, category: value})} style={{ width: 120 }}>
+              <Option value="Mobile">手机</Option>
+              <Option value="Notebook">笔记本</Option>
+              <Option value="Pad">平板</Option>
+            </Select>
+          </span>
           <span>商品图片: </span>
             <Upload name="file" action="http://localhost:8000/upload/" onChange={uploadChange}>
               <Button>
@@ -81,7 +117,19 @@ const Prod = (props) => {
             </Upload>
         </div>
       </Modal>
-      <Table dataSource={prods} columns={columns} rowKey="id" bordered />
+      <Table
+        dataSource={prods}
+        columns={columns}
+        rowKey="id"
+        bordered
+        pagination={{
+          total: prods.length,
+          current: params.current,
+          showSizeChange: true,
+          pageSize: params.pageSize,
+          onChange: pageChange
+        }}
+        />
     </div>
   )
 }

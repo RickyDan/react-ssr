@@ -11,7 +11,7 @@ import {
 
 function *getProds(param) {
   try {
-    const response = yield http.request('/prods', 'get', param)
+    const response = yield http.request('/prods', 'get', param.prods)
     yield put({ type: GET_PRODS_SUCCESS, dataSource: response.data })
   } catch (e) {
     yield put({ type: GET_PRODS_FAIL })
