@@ -11,7 +11,7 @@ import {
 
 function *authLogin(param) {
   try {
-    const res = yield http.request('/login', 'post', param.action)
+    const res = yield http.create('/login', param.action)
     showTips.success(res.message)
     cookie.setCookie('csrf_token', res.token)
     localStorage.setItem('username', res.username)

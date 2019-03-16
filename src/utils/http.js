@@ -41,17 +41,23 @@ class Ajax {
     )
   }
 
-  request (url, method = 'get', params = {}) {
+  query (url, data = {}) {
     url = this.baseUrl + url
-    return this.$http({
-      method: method,
-      url: url,
-      data: params
-    }).then(response => {
+    return this.$http.get(url, {params: data}).then(response => {
       return Promise.resolve(response.data)
     }).catch(err => {
       return Promise.reject(err)
     })
   }
+
+  create (url, data = {}) {
+    url = this.baseUrl + url
+    return this.$http.post(url, data).then(response => {
+      return Promise.resolve(response.data)
+    }).catch(err => {
+      return Promise.reject(err)
+    })
+  }
+
 }
 export default new Ajax()

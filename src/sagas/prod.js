@@ -11,7 +11,7 @@ import {
 
 function *getProds(param) {
   try {
-    const response = yield http.request('/prods', 'get', param.prods)
+    const response = yield http.query('/prods', param.prod)
     yield put({ type: GET_PRODS_SUCCESS, dataSource: response.data })
   } catch (e) {
     yield put({ type: GET_PRODS_FAIL })
@@ -20,7 +20,7 @@ function *getProds(param) {
 
 function *addProd (param) {
   try {
-    const response = yield http.request('/prod/add', 'post', param)
+    const response = yield http.create('/prod/add', 'post', param)
     yield put({ type: ADD_PROD_SUCCESS, info: response })
   } catch (e) {
     yield put({ type: ADD_PROD_FAIL })

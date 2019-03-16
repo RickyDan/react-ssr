@@ -37,24 +37,24 @@ const columns = [{
   dataIndex: 'createdAt',
   key: 'createdAt'
 }]
+
 const Prod = (props) => {
   const { prods, fetchProd, addProd } = props
-  const [params, setParams] = useState({
-    visible: false,
-    current: 1,
-    pageSize: 1,
-    prodname: '',
-    price: 0,
-    count: 0,
-    prodImg: '',
+  const [query, setQuery] = useState({
+    page: 1,
+    pageSize: 10,
     supplier: '',
     category: ''
   })
+  const [params, setParams] = useState({
+    visible: false,
+    prodImg: '',
+  })
   useEffect(() => {
-    fetchProd(params)
-  }, [])
+    fetchProd(query)
+  }, [query])
   function createProd () {
-    addProd(params)
+    addProd({...params})
     setParams({...params, visible: false})
   }
 
@@ -65,14 +65,17 @@ const Prod = (props) => {
     }
   }
 
-  function pageChange (current) {
-    setParams({...params, current})
-    fetchProd(params)
-  }
-
   return (
     <div>
       <Button icon="plus" onClick={() => setParams({...params, visible: true})}>新增</Button>
+      <Select
+        allowClear={true}
+        onChange={(value) => setQuery({ ...query, category: value })}
+        style={{ width: 120 }}>
+        <Option value="Mobile">手机</Option>
+        <Option value="Notebook">笔记本</Option>
+        <Option value="Pad">平板</Option>
+      </Select>
       <Modal
         title="商品上架"
         visible={params.visible}
@@ -127,7 +130,7 @@ const Prod = (props) => {
           current: params.current,
           showSizeChange: true,
           pageSize: params.pageSize,
-          onChange: pageChange
+          onChange: (page) => setQuery({...query, page: page})
         }}
         />
     </div>

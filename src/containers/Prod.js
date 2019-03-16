@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchProd: (prods) => dispatch({ type: GET_PRODS_SAGA, prods }),
+  fetchProd: (prod) => dispatch({ type: GET_PRODS_SAGA, prod }),
   addProd: (prod) => dispatch({type: ADD_PROD_SAGA, prod})
 })
 

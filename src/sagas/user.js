@@ -9,7 +9,7 @@ import {
 // worker saga
 function *showUsers() {
   try {
-    const response = yield http.request('/')
+    const response = yield http.query('/')
     yield put({ type: GET_USER_SUCCESS, user: response.data })
   } catch (e) {
     yield put({ type: GET_USER_FAIL })
