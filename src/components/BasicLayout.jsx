@@ -29,6 +29,10 @@ const BasicLayout = ({children, ...rest}) => {
                <Icon type="desktop" />
                <Link to="/prods">商品管理</Link>
              </Menu.Item>
+             <Menu.Item key="3">
+                <Icon type="shopping-cart" />
+                <Link to="/orders">订单管理</Link>
+             </Menu.Item>
            </Menu>
          </div>
        </Sider>
