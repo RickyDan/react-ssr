@@ -1,0 +1,6 @@
+export const GET_PRODS_SUCCESS = 'GET_PRODS_SUCCESS'
+export const GET_PRODS_FAIL = 'GET_PRODS_FAIL'
+export const GET_PRODS_SAGA = 'GET_PRODS_SAGA'
+export const ADD_PROD_SUCCESS = 'ADD_PROD_SUCCESS'
+export const ADD_PROD_FAIL = 'ADD_PROD_FAIL'
+export const ADD_PROD_SAGA = 'ADD_PROD_SAGA'

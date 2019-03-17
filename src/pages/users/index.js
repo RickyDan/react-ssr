@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import UserList from '../components/UserList'
-import { GET_USER_SAGA } from '../actions/ActionType'
+import UserList from './UserList'
+import { GET_USER_SAGA } from './action'
 
 const mapStateToProps = (state) => ({
   dataSource: state.user.dataSource

@@ -14,7 +14,7 @@ const {
   Content
 } = Layout
 
-const BasicLayout = ({children, ...rest}) => {
+const BasicLayout = ({children}) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
        <Sider

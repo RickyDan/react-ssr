@@ -27,7 +27,7 @@ const UserList = ({ dataSource, fetchUser }) => {
   useEffect(() => {
     fetchUser()
   }, [])
-  function showVisible () {
+  function showVisible() {
     setVisible(true)
   }
   return (
@@ -35,6 +35,6 @@ const UserList = ({ dataSource, fetchUser }) => {
       <Button onClick={showVisible}>{visible ? 'true' : 'false'}</Button>
       <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
     </div>
-  )  
+  )
 }
 export default UserList

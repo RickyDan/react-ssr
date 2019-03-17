@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import Order from '../components/Order'
-import { GET_ORDERS_SAGA } from '../actions/ActionType'
+import Order from './Order'
+import { GET_ORDERS_SAGA } from './action'
 
 const mapStateToProps = (state) => ({
   orders: state.order.dataSource

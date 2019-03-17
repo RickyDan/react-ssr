@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import Login from '../components/Login'
-import { LOGIN_SAGA } from '../actions/ActionType'
+import Login from './Login'
+import { LOGIN_SAGA } from './action'
 
 const mapStateToProps = (state) => ({
   token: state.login.token

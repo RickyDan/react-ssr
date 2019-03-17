@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Input, Upload, message, Icon, Select } from 'antd'
-import '../assets/styles/prod.less'
+import './prod.less'
 
 const Option = Select.Option
 const columns = [{
@@ -36,6 +36,15 @@ const columns = [{
   title: '创建时间',
   dataIndex: 'createdAt',
   key: 'createdAt'
+}, {
+  title: '操作',
+  key: 'action',
+  render: () => (
+    <span>
+      <Button size="small">编辑</Button>
+      <Button type="danger" size="small">下架</Button>
+    </span>
+  )
 }]
 
 const Prod = (props) => {
@@ -53,21 +62,21 @@ const Prod = (props) => {
   useEffect(() => {
     fetchProd(query)
   }, [query])
-  function createProd () {
-    addProd({...params})
-    setParams({...params, visible: false})
+  function createProd() {
+    addProd({ ...params })
+    setParams({ ...params, visible: false })
   }
 
-  function uploadChange (info) {
+  function uploadChange(info) {
     if (info.file.status === 'done') {
-      setParams({...params, prodImg: info.file.response.filename})
+      setParams({ ...params, prodImg: info.file.response.filename })
       message.success(`${info.file.name}`)
     }
   }
 
   return (
     <div>
-      <Button icon="plus" onClick={() => setParams({...params, visible: true})}>新增</Button>
+      <Button icon="plus" onClick={() => setParams({ ...params, visible: true })}>新增</Button>
       <Select
         allowClear={true}
         onChange={(value) => setQuery({ ...query, category: value })}
@@ -80,44 +89,44 @@ const Prod = (props) => {
         title="商品上架"
         visible={params.visible}
         onOk={createProd}
-        onCancel={() => setParams({...params, visible: false})}
+        onCancel={() => setParams({ ...params, visible: false })}
       >
         <div>
           <span>商品名: <Input
-            onChange={(e) => setParams({...params, prodname: e.target.value})}
+            onChange={(e) => setParams({ ...params, prodname: e.target.value })}
             value={params.prodname}
             placeholder="请输入商品名" allowClear />
           </span>
           <span>价格: <Input
-            onChange={(e) => setParams({...params, price: e.target.value})}
+            onChange={(e) => setParams({ ...params, price: e.target.value })}
             value={params.price}
             placeholder="请输入价格"
             allowClear /></span>
           <span>库存: <Input
-            onChange={(e) => setParams({...params, count: e.target.value})}
+            onChange={(e) => setParams({ ...params, count: e.target.value })}
             value={params.count}
             placeholder="请输入库存"
             allowClear /></span>
-          <span>厂商: 
-            <Select onChange={(value) => setParams({...params, supplier: value})} style={{ width: 120 }}>
+          <span>厂商:
+            <Select onChange={(value) => setParams({ ...params, supplier: value })} style={{ width: 120 }}>
               <Option value="HuaWei">华为</Option>
               <Option value="Xiaomi">小米</Option>
               <Option value="iPhone">苹果</Option>
             </Select>
           </span>
           <span>类别:
-            <Select onChange={(value) => setParams({...params, category: value})} style={{ width: 120 }}>
+            <Select onChange={(value) => setParams({ ...params, category: value })} style={{ width: 120 }}>
               <Option value="Mobile">手机</Option>
               <Option value="Notebook">笔记本</Option>
               <Option value="Pad">平板</Option>
             </Select>
           </span>
           <span>商品图片: </span>
-            <Upload name="file" action="http://localhost:8000/upload/" onChange={uploadChange}>
-              <Button>
-                <Icon type="upload" /> Click to Upload
+          <Upload name="file" action="http://localhost:8000/upload/" onChange={uploadChange}>
+            <Button>
+              <Icon type="upload" /> Click to Upload
               </Button>
-            </Upload>
+          </Upload>
         </div>
       </Modal>
       <Table
@@ -130,9 +139,9 @@ const Prod = (props) => {
           current: params.current,
           showSizeChange: true,
           pageSize: params.pageSize,
-          onChange: (page) => setQuery({...query, page: page})
+          onChange: (page) => setQuery({ ...query, page: page })
         }}
-        />
+      />
     </div>
   )
 }

@@ -25,13 +25,13 @@ const columns = [{
 const Order = (props) => {
   const { orders, fetchOrder } = props
   const [query] = useState({
-    page:1,
+    page: 1,
     pageSize: 10,
     prodName: '',
     orderNum: '',
     status: 1
   })
-  useEffect (() => {
+  useEffect(() => {
     fetchOrder(query)
   }, [query])
   return (
