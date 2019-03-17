@@ -10,7 +10,7 @@ const initState = {
 const orderReducer = (state = initState, action) => {
   switch (action.type) {
     case GET_ORDERS_SUCCESS:
-      return { ...state, dataSource: action.dataSource, isFetching: true }
+      return { ...state, dataSource: action.orders, isFetching: true }
     case GET_ORDERS_FAIL:
       return { ...state, error: action.error }
     default:

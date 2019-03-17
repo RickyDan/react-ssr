@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchOrder: (order) => dispatch({ type: GET_ORDERS_SAGA, order })
+  fetchOrder: (orders) => dispatch({ type: GET_ORDERS_SAGA, orders })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

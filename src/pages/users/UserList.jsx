@@ -39,7 +39,7 @@ const UserList = ({ dataSource, fetchUser }) => {
   )
 }
 UserList.propTypes = {
-  dataSources: PropTypes.array.isRequired,
+  dataSource: PropTypes.array.isRequired,
   fetchUser: PropTypes.func.isRequired
 }
 export default UserList
