@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { Table, Button } from 'antd'
 
 const columns = [{
@@ -36,5 +37,9 @@ const UserList = ({ dataSource, fetchUser }) => {
       <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
     </div>
   )
+}
+UserList.propTypes = {
+  dataSources: PropTypes.array.isRequired,
+  fetchUser: PropTypes.func.isRequired
 }
 export default UserList

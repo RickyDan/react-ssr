@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { Table, Button, Modal, Input, Upload, message, Icon, Select } from 'antd'
 import './prod.less'
 
@@ -144,5 +145,10 @@ const Prod = (props) => {
       />
     </div>
   )
+}
+Prod.propTypes = {
+  prods: PropTypes.array.isRequired,
+  fetchProd: PropTypes.func.isRequired,
+  addProd: PropTypes.func.isRequired
 }
 export default Prod

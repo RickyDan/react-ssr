@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import user from './user'
-import prod from './prod'
-import login from './login'
-import order from './order'
+import user from '../pages/users/reducer'
+import prod from '../pages/prods/reducer'
+import login from '../pages/login/reducer'
+import order from '../pages/users/reducer'
 
 export default combineReducers({
   user,

@@ -1,5 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects'
-import http from '../utils/http'
+import http from '../../utils/http'
 import {
   GET_USER_SUCCESS,
   GET_USER_FAIL,

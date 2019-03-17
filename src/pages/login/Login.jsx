@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import {
   Form, Icon, Input, Button
 } from 'antd'
@@ -32,5 +33,8 @@ const LoginPage = ({ token, fetchLogin }) => {
     </Form>
   )
 }
-
+LoginPage.propTypes = {
+  token: PropTypes.string.isRequired,
+  fetchLogin: PropTypes.func.isRequired
+}
 export default LoginPage

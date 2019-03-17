@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { Table } from 'antd'
 
 const columns = [{
@@ -39,5 +40,10 @@ const Order = (props) => {
       <Table dataSource={orders} rowKey="id" bordered columns={columns} />
     </div>
   )
+}
+
+Order.propTypes = {
+  orders: PropTypes.array.isRequired,
+  fetchOrder: PropTypes.func.isRequired
 }
 export default Order
