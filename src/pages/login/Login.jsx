@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import './login.less'
 
-const LoginPage = ({ token, fetchLogin }) => {
+const LoginPage = React.memo(({ token, fetchLogin }) => {
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
@@ -32,7 +32,7 @@ const LoginPage = ({ token, fetchLogin }) => {
       </Form.Item>
     </Form>
   )
-}
+})
 LoginPage.propTypes = {
   token: PropTypes.string.isRequired,
   fetchLogin: PropTypes.func.isRequired

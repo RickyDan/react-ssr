@@ -23,7 +23,7 @@ const columns = [{
   dataIndex: 'updatedAt',
   key: 'updatedAt'
 }]
-const UserList = ({ dataSource, fetchUser }) => {
+const UserList = React.memo(({ dataSource, fetchUser }) => {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
     fetchUser()
@@ -37,7 +37,8 @@ const UserList = ({ dataSource, fetchUser }) => {
       <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
     </div>
   )
-}
+})
+
 UserList.propTypes = {
   dataSource: PropTypes.array.isRequired,
   fetchUser: PropTypes.func.isRequired

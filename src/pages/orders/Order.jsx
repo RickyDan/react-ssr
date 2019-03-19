@@ -23,7 +23,7 @@ const columns = [{
   dataIndex: 'createdAt',
   key: 'createdAt'
 }]
-const Order = (props) => {
+const Order = React.memo((props) => {
   const { orders, fetchOrder } = props
   const [query] = useState({
     page: 1,
@@ -40,7 +40,7 @@ const Order = (props) => {
       <Table dataSource={orders} rowKey="id" bordered columns={columns} />
     </div>
   )
-}
+})
 
 Order.propTypes = {
   orders: PropTypes.array.isRequired,

@@ -48,7 +48,7 @@ const columns = [{
   )
 }]
 
-const Prod = (props) => {
+const Prod = React.memo((props) => {
   const { prods, fetchProd, addProd } = props
   const [query, setQuery] = useState({
     page: 1,
@@ -145,7 +145,7 @@ const Prod = (props) => {
       />
     </div>
   )
-}
+})
 Prod.propTypes = {
   prods: PropTypes.array.isRequired,
   fetchProd: PropTypes.func.isRequired,
