@@ -4,49 +4,6 @@ import { Table, Button, Modal, Input, Upload, message, Icon, Select } from 'antd
 import './prod.less'
 
 const Option = Select.Option
-const columns = [{
-  title: 'id',
-  dataIndex: 'id',
-  key: 'id'
-}, {
-  title: '商品名',
-  dataIndex: 'prodname',
-  key: 'prodname'
-}, {
-  title: '价格',
-  dataIndex: 'price',
-  key: 'price'
-}, {
-  title: '库存',
-  dataIndex: 'count',
-  key: 'count'
-}, {
-  title: '商品图片',
-  dataIndex: 'prodImg',
-  key: 'prodImg',
-  render: (img) => <span className="prod-img"><img src={img} alt="" /></span>
-}, {
-  title: '类别',
-  dataIndex: 'category',
-  key: 'category'
-}, {
-  title: '厂家',
-  dataIndex: 'supplier',
-  key: 'supplier'
-}, {
-  title: '创建时间',
-  dataIndex: 'createdAt',
-  key: 'createdAt'
-}, {
-  title: '操作',
-  key: 'action',
-  render: () => (
-    <span>
-      <Button size="small">编辑</Button>
-      <Button type="danger" size="small">下架</Button>
-    </span>
-  )
-}]
 
 const Prod = React.memo((props) => {
   const { prods, fetchProd, addProd } = props
@@ -63,6 +20,65 @@ const Prod = React.memo((props) => {
   useEffect(() => {
     fetchProd(query)
   }, [query])
+  const getFilterProps = (dataIndex) => ({
+    filterDropdown: () => (
+      <div>
+        <Select
+          allowClear={true}
+          onChange={(value) => setQuery({ ...query, category: value })}
+          style={{ width: 120 }}>
+          <Option value="Mobile">手机</Option>
+          <Option value="Notebook">笔记本</Option>
+          <Option value="Pad">平板</Option>
+        </Select>
+      </div>
+    ),
+    filterIcon: filtered => <Icon type="filter" style={{ color: filtered ? '#1890ff' : undefined }} />
+  })
+  const columns = [{
+    title: 'id',
+    dataIndex: 'id',
+    key: 'id'
+  }, {
+    title: '商品名',
+    dataIndex: 'prodname',
+    key: 'prodname'
+  }, {
+    title: '价格',
+    dataIndex: 'price',
+    key: 'price'
+  }, {
+    title: '库存',
+    dataIndex: 'count',
+    key: 'count'
+  }, {
+    title: '商品图片',
+    dataIndex: 'prodImg',
+    key: 'prodImg',
+    render: (img) => <span className="prod-img"><img src={img} alt="" /></span>
+  }, {
+    title: '类别',
+    dataIndex: 'category',
+    key: 'category',
+    ...getFilterProps('category')
+  }, {
+    title: '厂家',
+    dataIndex: 'supplier',
+    key: 'supplier'
+  }, {
+    title: '创建时间',
+    dataIndex: 'createdAt',
+    key: 'createdAt'
+  }, {
+    title: '操作',
+    key: 'action',
+    render: () => (
+      <span>
+        <Button size="small">编辑</Button>
+        <Button type="danger" size="small">下架</Button>
+      </span>
+    )
+  }]
   function createProd() {
     addProd({ ...params })
     setParams({ ...params, visible: false })
@@ -78,14 +94,6 @@ const Prod = React.memo((props) => {
   return (
     <div>
       <Button icon="plus" onClick={() => setParams({ ...params, visible: true })}>新增</Button>
-      <Select
-        allowClear={true}
-        onChange={(value) => setQuery({ ...query, category: value })}
-        style={{ width: 120 }}>
-        <Option value="Mobile">手机</Option>
-        <Option value="Notebook">笔记本</Option>
-        <Option value="Pad">平板</Option>
-      </Select>
       <Modal
         title="商品上架"
         visible={params.visible}
