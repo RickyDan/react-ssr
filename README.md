@@ -1,4 +1,4 @@
-# react-graphql-demo
+# react 全家桶 demo
 ## 前言
 >  本工程主要基于react16.8.x + redux + redux-saga + less + ES6/7 + webpack4.0 + axios + react-router4.0 + antd(3.x)实现的SPA后台管理系统模板。
 
