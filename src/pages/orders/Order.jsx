@@ -37,7 +37,7 @@ const Order = React.memo((props) => {
   }, [query])
   return (
     <div className="order-page">
-      <Table dataSource={orders} rowKey="id" bordered columns={columns} />
+      <Table className="list-info" dataSource={orders} rowKey="id" bordered columns={columns} />
     </div>
   )
 })

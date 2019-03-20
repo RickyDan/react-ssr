@@ -131,6 +131,7 @@ const Prod = React.memo((props) => {
         </div>
       </Modal>
       <Table
+        className="list-info"
         dataSource={prods}
         columns={columns}
         rowKey="id"

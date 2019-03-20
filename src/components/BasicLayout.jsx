@@ -3,9 +3,11 @@ import { Route, Link, Redirect } from 'react-router-dom'
 import {
   Layout,
   Menu,
-  Icon
+  Icon,
+  Dropdown
 } from 'antd'
 import getAuth from '../utils/auth'
+import '../assets/styles/basiclayout.less'
 
 
 const {
@@ -16,7 +18,7 @@ const {
 
 const BasicLayout = ({children}) => {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh' }} className="layout-container">
        <Sider
         collapsed={true}>
          <div className="logo">
@@ -37,10 +39,25 @@ const BasicLayout = ({children}) => {
          </div>
        </Sider>
       <Layout>
-         <Header style = {{ background: '#000', padding: 0 }} />
-         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-           {children}
-         </Content>
+        <Header style = {{ background: '#000', padding: 0 }}>
+          <div className="user-info">
+            <Dropdown
+              trigger={["click"]}
+              overlay={() => (
+              <Menu>
+                <Menu.Item key="1"><Icon type="setting" />个人设置</Menu.Item>
+                <Menu.Item key="2"><Icon type="logout" />退出登录</Menu.Item>
+              </Menu>
+              )}>
+              <span className="userName">
+                {localStorage.getItem('username')}<Icon type="down" />
+              </span>
+            </Dropdown>,
+          </div>
+        </Header>
+        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+          {children}
+        </Content>
        </Layout>
   </Layout>
   )

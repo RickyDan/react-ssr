@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Table, Button } from 'antd'
+import { Table } from 'antd'
 
 const columns = [{
   title: 'id',
@@ -24,17 +24,12 @@ const columns = [{
   key: 'updatedAt'
 }]
 const UserList = React.memo(({ dataSource, fetchUser }) => {
-  const [visible, setVisible] = useState(false)
   useEffect(() => {
     fetchUser()
   }, [])
-  function showVisible() {
-    setVisible(true)
-  }
   return (
     <div>
-      <Button onClick={showVisible}>{visible ? 'true' : 'false'}</Button>
-      <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
+      <Table className="list-info" dataSource={dataSource} columns={columns} rowKey="id" bordered />
     </div>
   )
 })
