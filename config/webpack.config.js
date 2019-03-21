@@ -23,6 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const SentryPlugin = require('@sentry/webpack-plugin')
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -542,6 +543,11 @@ module.exports = function(webpackEnv) {
           filename: 'static/css/[name].[contenthash:8].css',
           chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }),
+      new SentryPlugin({
+        resolve: process.env.REPLEASE,
+        include: './dist',
+        ignore: ['node_modules', 'webpack.config.js']
+      }),
       // Generate a manifest file which contains a mapping of all asset filenames
       // to their corresponding output file so that tools can pick it up without
       // having to parse `index.html`.

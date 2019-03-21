@@ -135,6 +135,8 @@
     ]
   },
   "devDependencies": {
+    "@sentry/cli": "^1.40.0",
+    "@sentry/webpack-plugin": "^1.6.2",
     "babel-plugin-import": "^1.11.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "customize-cra": "^0.2.12",

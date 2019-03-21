@@ -1,0 +1,7 @@
+[default]
+url = http://sentry.io/
+org = organizations/ruby-7t
+project = react-ssr
+
+[auth]
+token = 7d87220ba9d0427088dc69c7ddff40fdbd51b6787bae46948636642348feaab3
