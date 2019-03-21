@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 
 const columns = [{
   title: '订单号',
@@ -32,11 +32,14 @@ const Order = React.memo((props) => {
     orderNum: '',
     status: 1
   })
+  const [count, setCount] = useState(1)
   useEffect(() => {
     fetchOrder(query)
   }, [query])
   return (
     <div className="order-page">
+      <div>{count}</div>
+      <Button onClick={() => setCount(count + 1)}>Btn</Button>
       <Table className="list-info" dataSource={orders} rowKey="id" bordered columns={columns} />
     </div>
   )
