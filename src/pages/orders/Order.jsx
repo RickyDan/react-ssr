@@ -37,7 +37,6 @@ const Order = React.memo((props) => {
   }, [query])
   return (
     <div className="order-page">
-      <div>{count}</div>
       <Table className="list-info" dataSource={orders} rowKey="id" bordered columns={columns} />
     </div>
   )
