@@ -20,7 +20,7 @@ const columns = [{
   key: 'price'
 }, {
   title: '创建时间',
-  dataIndex: 'createdAt',
+  dataIndex: "createdAt",
   key: 'createdAt'
 }]
 const Order = React.memo((props) => {

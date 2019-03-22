@@ -8,7 +8,7 @@ import Order from '../pages/orders'
 import Login from '../pages/login'
 import NoMatch from '../components/NoMatch'
 
-export default function router () {
+const router = () => {
   return (
     <Router history={history}>
       <Switch>
@@ -24,3 +24,4 @@ export default function router () {
     </Router>
   )
 }
+export default router
