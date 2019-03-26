@@ -6,6 +6,7 @@ import UserList from '../pages/users'
 import Prod from '../pages/prods'
 import Order from '../pages/orders'
 import Login from '../pages/login'
+import Pipe from '../pages/index/Pipe'
 import NoMatch from '../components/NoMatch'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -25,6 +26,7 @@ const router = () => {
         <DashboardRoute path="/orders" component={Order} />
         <DashboardRoute path="/users" component={UserList} />
         <DashboardRoute path="/prods" component={Prod} />
+        <DashboardRoute path="/index" component={Pipe} />
         <Route component={NoMatch} />
       </Switch>
     </Router>
