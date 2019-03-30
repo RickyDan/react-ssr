@@ -24,8 +24,9 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const SentryPlugin = require('@sentry/webpack-plugin')
-
-
+const HappyPack = require('happypack')
+const os = require('os')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -477,6 +478,15 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      new HappyPack({
+        id: 'js',
+        loaders: [
+          {
+            loader: 'babel-loader'
+          }
+        ],
+        threadPool: happyThreadPool
+      }),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
