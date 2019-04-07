@@ -59,5 +59,13 @@ class Ajax {
     })
   }
 
+  delete (url, data) {
+    url = this.baseUrl + url
+    return this.$http.delete(url, {data: data}).then(response => {
+      return Promise.resolve(response.data)
+    }).catch(err => {
+      return Promise.reject(err)
+    })
+  }
 }
 export default new Ajax()
