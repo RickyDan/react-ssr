@@ -17,24 +17,35 @@ const {
 } = Layout
 
 const BasicLayout = ({children}) => {
+  const logOut = () => {
+    localStorage.removeItem('username')
+    children.props.history.push('/login')
+  }
   return (
     <Layout style={{ minHeight: '100vh' }} className="layout-container">
        <Sider
-        collapsed={true}>
+        collapsed={false}>
          <div className="logo">
-           <Menu theme="dark" mode="inline">
+           <Menu
+            inlineCollapsed={true}
+            theme="dark"
+            mode="inline">
              <Menu.Item key="1">
-               <Icon type="pie-chart" />
-               <Link to="/users">用户管理</Link>
+               <Icon type="user" />
+               <span className="item-menu-text"><Link to="/users">用户管理</Link></span>
              </Menu.Item>
              <Menu.Item key="2">
                <Icon type="desktop" />
-               <Link to="/prods">商品管理</Link>
+               <span className="item-menu-text"><Link to="/prods">商品管理</Link></span>
              </Menu.Item>
              <Menu.Item key="3">
                 <Icon type="shopping-cart" />
-                <Link to="/orders">订单管理</Link>
+                <span className="item-menu-text"><Link to="/orders">订单管理</Link></span>
              </Menu.Item>
+            <Menu.Item key="4">
+              <Icon type="pie-chart" />
+              <span className="item-menu-text"><Link to="/count">数据统计</Link></span>
+            </Menu.Item>
            </Menu>
          </div>
        </Sider>
@@ -46,7 +57,7 @@ const BasicLayout = ({children}) => {
               overlay={() => (
               <Menu>
                 <Menu.Item key="1"><Icon type="setting" />个人设置</Menu.Item>
-                <Menu.Item key="2"><Icon type="logout" />退出登录</Menu.Item>
+                <Menu.Item key="2" onClick={logOut}><Icon type="logout" /><span>退出登录</span></Menu.Item>
               </Menu>
               )}>
               <span className="userName">

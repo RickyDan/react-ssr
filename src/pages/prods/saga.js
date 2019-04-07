@@ -6,7 +6,10 @@ import {
   GET_PRODS_SAGA,
   ADD_PROD_SUCCESS,
   ADD_PROD_FAIL,
-  ADD_PROD_SAGA
+  ADD_PROD_SAGA,
+  DELETE_PROD_SUCCESS,
+  DELETE_PROD_FAIL,
+  DELETE_PROD_SAGA
 } from './action'
 
 function* getProds(param) {
@@ -27,10 +30,23 @@ function* addProd(param) {
   }
 }
 
+function* deleteProd(param) {
+  try {
+    const response = yield http.delete('/prod/delete', param)
+    yield put({ type: DELETE_PROD_SUCCESS, info: response })
+  } catch (e) {
+    yield put({ type: DELETE_PROD_FAIL })
+  }
+}
+
 export function* watchGetProds() {
   yield takeLatest(GET_PRODS_SAGA, getProds)
 }
 
 export function* watchAddProd() {
   yield takeLatest(ADD_PROD_SAGA, addProd)
+}
+
+export function* watchDeleteProd() {
+  yield takeLatest(DELETE_PROD_SAGA, deleteProd)
 }

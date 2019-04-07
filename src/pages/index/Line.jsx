@@ -89,7 +89,7 @@ const cols = {
 const Line = () => {
   return (
     <div>
-      <Chart height={300} data={dv} scale={cols}>
+      <Chart height={350} data={dv} scale={cols}>
         <Legend />
         <Axis name="month" />
         <Axis

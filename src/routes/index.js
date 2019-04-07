@@ -26,7 +26,7 @@ const router = () => {
         <DashboardRoute path="/orders" component={Order} />
         <DashboardRoute path="/users" component={UserList} />
         <DashboardRoute path="/prods" component={Prod} />
-        <DashboardRoute path="/index" component={PipeIndex} />
+        <DashboardRoute path="/count" component={PipeIndex} />
         <Route component={NoMatch} />
       </Switch>
     </Router>

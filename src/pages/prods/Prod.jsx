@@ -6,7 +6,7 @@ import './prod.less'
 const Option = Select.Option
 
 const Prod = React.memo((props) => {
-  const { prods, fetchProd, addProd } = props
+  const { prods, fetchProd, addProd, deleteProd } = props
   const [query, setQuery] = useState({
     page: 1,
     pageSize: 10,
@@ -72,16 +72,20 @@ const Prod = React.memo((props) => {
   }, {
     title: '操作',
     key: 'action',
-    render: () => (
+    render: (text, row) => (
       <span>
-        <Button size="small">编辑</Button>
-        <Button type="danger" size="small">下架</Button>
+        <Button type="danger" size="small" onClick={() => removeProd(row)}>下架</Button>
       </span>
     )
   }]
   function createProd() {
     addProd({ ...params })
     setParams({ ...params, visible: false })
+  }
+
+  function removeProd(record) {
+    console.log(record)
+    deleteProd(record)
   }
 
   function uploadChange(info) {

@@ -1,4 +1,11 @@
-import { GET_PRODS_SUCCESS, GET_PRODS_FAIL, ADD_PROD_SUCCESS, ADD_PROD_FAIL } from './action'
+import { 
+  GET_PRODS_SUCCESS,
+  GET_PRODS_FAIL,
+  ADD_PROD_SUCCESS,
+  ADD_PROD_FAIL,
+  DELETE_PROD_SUCCESS,
+  DELETE_PROD_FAIL
+} from './action'
 
 const initState = {
   isFetching: false,
@@ -16,6 +23,10 @@ const prodReducer = (state = initState, action) => {
       return { ...state, error: action.error }
     case ADD_PROD_SUCCESS:
       return { ...state, message: action.message }
+    case DELETE_PROD_SUCCESS:
+      return { ...state, message: action.message }
+    case DELETE_PROD_FAIL:
+      return { ...state, error: action.error } 
     default:
       return state
   }
