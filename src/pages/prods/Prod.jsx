@@ -84,7 +84,6 @@ const Prod = React.memo((props) => {
   }
 
   function removeProd(record) {
-    console.log(record)
     deleteProd(record)
   }
 

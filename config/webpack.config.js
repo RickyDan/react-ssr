@@ -596,6 +596,7 @@ module.exports = function(webpackEnv) {
           async: false,
           checkSyntacticErrors: true,
           tsconfig: paths.appTsConfig,
+          tslint: paths.appTsLint,
           compilerOptions: {
             module: 'esnext',
             moduleResolution: 'node',
@@ -614,7 +615,7 @@ module.exports = function(webpackEnv) {
           ],
           watch: paths.appSrc,
           silent: true,
-          formatter: typescriptFormatter,
+          formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.

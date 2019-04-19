@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 import { render} from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import logger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'

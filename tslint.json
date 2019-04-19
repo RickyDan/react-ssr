@@ -1,0 +1,29 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-console": false,
+    "no-debugger": false,
+    "no-string-literal": false,
+    "indent": [
+      true,
+      "spaces",
+      2
+    ], // 缩进
+    "no-consecutive-blank-lines": [ // 空行不超过两行
+      true,
+      2
+    ],
+    "jsx-no-lambda": false,
+    // 倒入（import）源的排序规则
+    "ordered-imports": false
+  },
+  "jsRules": {
+    "object-literal-sort-keys": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  }
+}

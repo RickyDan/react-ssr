@@ -14,9 +14,6 @@ export default class SentryBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.error) {
-      console.log('React Error')
-    }
     return this.props.children
   }
 }

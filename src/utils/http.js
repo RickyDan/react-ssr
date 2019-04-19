@@ -8,7 +8,7 @@ class Ajax {
     this.$http.interceptors.request.use(
       config => {
         let token = cookie.getCookie('csrf_token')
-        config.headers.common['authorization'] = token
+        config.headers.common.authorization = token
         return config
       },
       err => {
@@ -24,13 +24,10 @@ class Ajax {
         if (err.response) {
           switch (err.response.status) {
             case 404:
-              console.log('请求发生404错误')
               break
             case 500:
-              console.log('请求发生500错误')
               break
             case 504:
-              console.log('请求超时')
               break
             default:
               break
