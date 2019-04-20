@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Route, Link, Redirect } from 'react-router-dom'
 import {
   Layout,
@@ -16,10 +16,18 @@ const {
   Content
 } = Layout
 
-const BasicLayout = ({children}) => {
+interface IBasicProps {
+  children: React.ReactElement
+}
+interface IDashProps {
+  component: React.ReactType
+  rest?: object | null
+}
+
+const BasicLayout: React.FC<IBasicProps> = (props) => {
   const logOut = () => {
     localStorage.removeItem('username')
-    children.props.history.push('/login')
+    props.children.props.history.push('/login')
   }
   return (
     <Layout style={{ minHeight: '100vh' }} className="layout-container">
@@ -67,14 +75,14 @@ const BasicLayout = ({children}) => {
           </div>
         </Header>
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-          {children}
+          {props.children}
         </Content>
        </Layout>
   </Layout>
   )
 }
 
-const DashboardRoute = ({component: Component, ...rest}) => {
+const DashboardRoute: React.FC<IDashProps> = ({component: Component, ...rest}) => {
   return (
     getAuth() ? (<Route {...rest} render={matchProps => (
       <BasicLayout>
